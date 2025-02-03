@@ -73,7 +73,18 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand(); // Expands the web app panel
-
+		
+		let userIP = "Unknown"; // Default value
+		 // Fetch user's IP
+        fetch("https://api.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                userIP = data.ip; // Store IP in variable
+                console.log("User IP:", userIP); // Debugging in console
+            })
+            .catch(error => console.error("Error fetching IP:", error));
+		tg.sendData(`user-ip:${userIP}`);
+		
         function verify() {
             // When clicked, sends the data to the bot
             tg.sendData('verified');

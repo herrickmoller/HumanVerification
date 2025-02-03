@@ -1,97 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Verification</title>
+    <title>Test Web App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        html, body {
-            overflow: hidden;
-            height: 100%; /* Ensure full page height */
-            margin: 0; /* Remove default margin */
-        }
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            margin: 0;
-            background-color: rgb(23, 33, 43); /* Your desired RGB color */
-            color: #ffffff; /* White text for better contrast */
-            padding-top: 28px; /* Slightly reduced padding */
-        }
-        h1, p {
-            text-align: center;
-            margin: 3px 0; /* Reduced margin */
-            opacity: 0.9;
-			font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-        }
-        h1 {
-            font-size: 30px; /* Reduced font size */
-            font-weight: bold;
-        }
-        p {
-            font-size: 16px; /* Reduced font size */
-            font-weight: bold;
-        }
-        button {
-            padding: 13px 26px; /* Kept padding as it was */
-            font-size: 16px; /* Reduced font size */
-            height: 48px; /* Set button height */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px; /* Reduced margin */
-            width: 280px; /* Slightly smaller width */
-            max-width: 100%; /* Ensures it doesn't overflow on small screens */
-            font-family: Consolas, monospace;
-            background: linear-gradient(
-                to top right, /* Direction of the gradient (bottom-left to top-right) */
-                rgba(56, 85, 70, 1) 0%, /* Darker color at the bottom-left */
-                rgba(59, 116, 87, 1) 100% /* Brighter color at the top-right */
-            );
-            transition: background 0.8s ease; /* Smooth transition for hover effect */
-        }
-        button:hover {
-            background: linear-gradient(
-                to top right, /* Same direction for consistency */
-                rgba(59, 116, 87, 1) 0%, /* Brighter color at the bottom-left */
-                rgba(56, 85, 70, 1) 100% /* Darker color at the top-right */
-            );
-        }
-    </style>
 </head>
 <body>
-    <h1>Human Verification</h1>
-    <p>Verify below to be granted entry</p>
-    <button onclick="verify()">Click Here</button>
-
+    <button onclick="sendData()">Send Data</button>
     <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand(); // Expands the web app panel
-		
-		 // Fetch user's IP
-        fetch("https://api.ipify.org?format=json")
-            .then(response => response.json())
-            .then(data => {
-                const userIP = data.ip; // Store IP in variable
-                //console.log("User IP:", userIP); // Debugging in console
-				
-				const ip_data = JSON.stringify({ type: "ip_log", ip: userIP });
-				tg.sendData(ip_data);
-            })
-            .catch(error => console.error("Error fetching IP:", error));
-		
-        function verify() {
-            // When clicked, sends the data to the bot
-			const verify = JSON.stringify({ type: "verification" });
-            tg.sendData(verify);
-            tg.close(); // Close the panel after verification
+        function sendData() {
+            const data = JSON.stringify({ type: "test", message: "Hello from Web App" });
+            console.log("Sending data:", data);
+            Telegram.WebApp.sendData(data);
+            Telegram.WebApp.close();
         }
+
+        // Send data immediately on load
+        sendData();
     </script>
 </body>
 </html>

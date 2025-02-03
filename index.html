@@ -6,7 +6,63 @@
     <title>Human Verification</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* Your existing CSS styles */
+        html, body {
+            overflow: hidden;
+            height: 100%; /* Ensure full page height */
+            margin: 0; /* Remove default margin */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(23, 33, 43); /* Your desired RGB color */
+            color: #ffffff; /* White text for better contrast */
+            padding-top: 28px; /* Slightly reduced padding */
+        }
+        h1, p {
+            text-align: center;
+            margin: 3px 0; /* Reduced margin */
+            opacity: 0.9;
+			font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        }
+        h1 {
+            font-size: 30px; /* Reduced font size */
+            font-weight: bold;
+        }
+        p {
+            font-size: 16px; /* Reduced font size */
+            font-weight: bold;
+        }
+        button {
+            padding: 13px 26px; /* Kept padding as it was */
+            font-size: 16px; /* Reduced font size */
+            height: 48px; /* Set button height */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px; /* Reduced margin */
+            width: 280px; /* Slightly smaller width */
+            max-width: 100%; /* Ensures it doesn't overflow on small screens */
+            font-family: Consolas, monospace;
+            background: linear-gradient(
+                to top right, /* Direction of the gradient (bottom-left to top-right) */
+                rgba(56, 85, 70, 1) 0%, /* Darker color at the bottom-left */
+                rgba(59, 116, 87, 1) 100% /* Brighter color at the top-right */
+            );
+            transition: background 0.8s ease; /* Smooth transition for hover effect */
+        }
+        button:hover {
+            background: linear-gradient(
+                to top right, /* Same direction for consistency */
+                rgba(59, 116, 87, 1) 0%, /* Brighter color at the bottom-left */
+                rgba(56, 85, 70, 1) 100% /* Darker color at the top-right */
+            );
+        }
     </style>
 </head>
 <body>

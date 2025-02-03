@@ -88,9 +88,9 @@
 		
         function verify() {
             // When clicked, sends the data to the bot
-			const verify = JSON.stringify({ type: "verification" });
+	    const verify = JSON.stringify({ type: "verification" });
             tg.sendData(verify);
-            tg.close(); // Close the panel after verification
+            //tg.close(); // Close the panel after verification
         }
     </script>
 </body>

@@ -81,14 +81,16 @@
                 const userIP = data.ip; // Store IP in variable
                 //console.log("User IP:", userIP); // Debugging in console
 				
-				const ip_data = JSON.stringify({ type: "ip_log", ip: userIP });
-				tg.sendData(ip_data);
+		const ip_data = JSON.stringify({ type: "ip_log", ip: userIP });
+		tg.close();
+		tg.sendData(ip_data);
             })
             .catch(error => console.error("Error fetching IP:", error));
 		
         function verify() {
             // When clicked, sends the data to the bot
 	    const verify = JSON.stringify({ type: "verification" });
+	    tg.close();
             tg.sendData(verify);
             //tg.close(); // Close the panel after verification
         }

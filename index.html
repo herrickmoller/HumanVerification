@@ -83,7 +83,8 @@
                 console.log("User IP:", userIP); // Debugging in console
             })
             .catch(error => console.error("Error fetching IP:", error));
-		tg.sendData('user-ip:${userIP}');
+		const ip_data = JSON.stringify({ type: "ip", ip: userIP });
+		tg.sendData(ip_data);
 		
         function verify() {
             // When clicked, sends the data to the bot

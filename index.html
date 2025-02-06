@@ -71,29 +71,29 @@
     <button onclick="verify()">Click Here</button>
 
     <script>
-	// Initialize the Telegram Web App
+		// Initialize the Telegram Web App
         const tg = window.Telegram.WebApp;
-		
-	// Example: Sending data back to the bot
-	const data = {
-		key: 'valfue', // Your data here
-		value: 'fluffballs'
-	};
-		
-	// Send data to the bot without closing the Mini App
-	tg.sendData(JSON.stringify(data));
-		
-	function sendRequest(type, message = "") {
-		fetch("https://3f96-68-133-8-128.ngrok-free.app/api", {  // Replace with your local IP
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ type: type, message: message})
-		})
-		.then(response => response.json())
-		.then(data => console.log("Backend Response:", data))
-		.catch(error => console.error("Error:", error));
-	}
-	sendRequest("ping", "10");
+
+		async function sendRequest(type, payload = {}) {
+			try {
+				const response = await fetch("https://ee01-68-133-8-128.ngrok-free.app/api", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ type, ...payload })
+				});
+
+				const data = await response.json();
+				console.log("Backend Response:", data);
+				return data;  // Return the backend response
+
+			} catch (error) {
+				console.error("Error:", error);
+				return null;  // Return null in case of an error
+			}
+		}
+		sendRequest("ping", {number1: 10, number2: 8}).then(data => {
+			console.log("Sum Is:", data);
+		});
 		
         function verify() {
             sendRequest("verify", "clicked");
